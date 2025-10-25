@@ -8,7 +8,8 @@ using System.Web.Http;
 
 namespace OldApi.App.Controllers
 {
-    public class PingController : ApiController
+	[RoutePrefix("api/ping")]
+	public class PingController : ApiController
     {
 		// GET: api/Ping
 		[HttpGet]
