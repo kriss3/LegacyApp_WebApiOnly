@@ -8,4 +8,9 @@ namespace OldApi.App.Models
 	public class PingRequest
 	{
 	}
+
+	public class PingResponse 
+	{
+
+	}
 }
