@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OldApi.App.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,11 +10,20 @@ namespace OldApi.App.Controllers
 {
     public class PingController : ApiController
     {
-        // GET: api/Ping
-        public IEnumerable<string> Get()
+		// GET: api/Ping
+		[HttpGet]
+		[Route("")]
+		public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+			var response = new PingResponse
+			{
+				Id = 0,
+				Message = "Pong",
+				Status = "OK",
+				Timestamp = DateTime.UtcNow
+			};
+			return Ok(response);
+		}
 
         // GET: api/Ping/5
         public string Get(int id)
