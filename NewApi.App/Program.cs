@@ -2,7 +2,8 @@ using Yarp.ReverseProxy;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add Yarp
-builder.Services.AddReverseProxy();
+builder.Services.AddReverseProxy()
+	.LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 
 
@@ -19,6 +20,12 @@ if (app.Environment.IsDevelopment())
 {
 	app.MapOpenApi();
 }
+
+app.MapGet("/api/v1/ping", () => Results.Ok(new { source = "new API", mesage = "Pong"  }));
+
+app.MapReverseProxy();
+
+app.MapGet("/health", () => Results.Ok("OK"));
 
 app.UseHttpsRedirection();
 
