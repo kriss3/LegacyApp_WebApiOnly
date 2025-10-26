@@ -65,8 +65,10 @@ namespace OldApi.App.Controllers
 			return Ok(response);
         }
 
-        // DELETE: api/Ping/5
-        public void Delete(int id)
+		// DELETE: api/Ping/5
+		[HttpDelete]
+		[Route("{id:int}")]
+		public IHttpActionResult Delete(int id)
         {
         }
 
