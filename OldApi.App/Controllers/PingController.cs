@@ -86,7 +86,7 @@ namespace OldApi.App.Controllers
 			{
 				Id = request.Id,
 				Message = request.Message,
-				Status = "Received", //status
+				Status = status,
 				Timestamp = DateTime.UtcNow
 			};
 		}
