@@ -70,7 +70,15 @@ namespace OldApi.App.Controllers
 		[Route("{id:int}")]
 		public IHttpActionResult Delete(int id)
         {
-        }
+			var response = new PingResponse
+			{
+				Id = id,
+				Message = "Deleted",
+				Status = "OK",
+				Timestamp = DateTime.UtcNow
+			};
+			return Ok(response);
+		}
 
 		private PingResponse CreatePingResponse(PingRequest request, string status) 
 		{
