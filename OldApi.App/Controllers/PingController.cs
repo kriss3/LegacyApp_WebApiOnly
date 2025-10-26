@@ -41,13 +41,16 @@ namespace OldApi.App.Controllers
 			return Ok(response);
 		}
 
-        // POST: api/Ping
-        public void Post([FromBody]string value)
-        {
-        }
+		// POST: api/ping
+		[HttpPost]
+		[Route("")]
+		public IHttpActionResult Post([FromBody] PingRequest request) 
+		{
 
-        // PUT: api/Ping/5
-        public void Put(int id, [FromBody]string value)
+		}
+
+		// PUT: api/Ping/5
+		public void Put(int id, [FromBody]string value)
         {
         }
 
