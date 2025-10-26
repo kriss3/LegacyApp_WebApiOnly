@@ -27,10 +27,19 @@ namespace OldApi.App.Controllers
 		}
 
         // GET: api/Ping/5
-        public string Get(int id)
+        [HttpGet]
+		[Route("{id:int}")]
+		public IHttpActionResult Get(int id)
         {
-            return "value";
-        }
+			var response = new PingResponse
+			{
+				Id = id,
+				Message = "Pong",
+				Status = "OK",
+				Timestamp = DateTime.UtcNow
+			};
+			return Ok(response);
+		}
 
         // POST: api/Ping
         public void Post([FromBody]string value)
