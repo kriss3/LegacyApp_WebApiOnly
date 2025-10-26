@@ -46,7 +46,10 @@ namespace OldApi.App.Controllers
 		[Route("")]
 		public IHttpActionResult Post([FromBody] PingRequest request) 
 		{
-
+			if(request is null) 
+				return BadRequest("Invalid request, cannot be null.");
+			var response = CreatePingResponse(request, "Received");
+			return Ok(response);
 		}
 
 		// PUT: api/Ping/5
@@ -58,5 +61,16 @@ namespace OldApi.App.Controllers
         public void Delete(int id)
         {
         }
+
+		private PingResponse CreatePingResponse(PingRequest request, string status) 
+		{
+			return new PingResponse
+			{
+				Id = request.Id,
+				Message = request.Message,
+				Status = "Received", //status
+				Timestamp = DateTime.UtcNow
+			};
+		}
     }
 }
