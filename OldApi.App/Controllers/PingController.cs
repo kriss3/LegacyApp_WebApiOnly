@@ -38,6 +38,7 @@ namespace OldApi.App.Controllers
 				Status = "OK",
 				Timestamp = DateTime.UtcNow
 			};
+
 			return Ok(response);
 		}
 
@@ -53,8 +54,10 @@ namespace OldApi.App.Controllers
 		}
 
 		// PUT: api/Ping/5
-		public void Put(int id, [FromBody]string value)
-        {
+		[HttpPut]
+		[Route("{id:int}")]
+		public IHttpActionResult Put(int id, [FromBody] PingRequest request)
+		{
         }
 
         // DELETE: api/Ping/5
