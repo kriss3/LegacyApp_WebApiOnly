@@ -58,6 +58,11 @@ namespace OldApi.App.Controllers
 		[Route("{id:int}")]
 		public IHttpActionResult Put(int id, [FromBody] PingRequest request)
 		{
+			if (request is null)
+				return BadRequest("Invalid request, cannot be null.");
+
+			var response = CreatePingResponse(request, "Updated");
+			return Ok(response);
         }
 
         // DELETE: api/Ping/5
