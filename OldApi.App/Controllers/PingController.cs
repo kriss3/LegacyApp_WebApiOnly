@@ -12,17 +12,19 @@ namespace OldApi.App.Controllers
 	public class PingController : ApiController
     {
 		// GET: api/Ping
-		[HttpGet]
-		[Route("")]
+		[HttpGet, Route("")]
 		public IHttpActionResult Get()
         {
-			var response = new PingResponse
+			var payLoad = new PingResponse
 			{
 				Id = 0,
 				Message = "Pong",
 				Status = "OK",
 				Timestamp = DateTime.UtcNow
 			};
+			var response = 	Request.CreateResponse(
+					HttpStatusCode.OK, payLoad);
+			response.Headers.Add("X-Legacy-Version", "1.0");
 			return Ok(response);
 		}
 
@@ -78,6 +80,12 @@ namespace OldApi.App.Controllers
 				Timestamp = DateTime.UtcNow
 			};
 			return Ok(response);
+		}
+
+		[HttpGet, Route("echo/{text}")]
+		public IHttpActionResult Echo(string text)
+		{
+			return Ok(new { source = "legacy", echoed = text });
 		}
 
 		private PingResponse CreatePingResponse(PingRequest request, string status) 
