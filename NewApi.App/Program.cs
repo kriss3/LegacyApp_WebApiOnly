@@ -14,7 +14,7 @@ if (app.Environment.IsDevelopment())
 	app.MapOpenApi();
 }
 
-app.MapGet("/api/v1/ping", () => Results.Ok(new { source = "new API", mesage = "Pong"  }));
+//app.MapGet("/api/v1/ping", () => Results.Ok(new { source = "new API", mesage = "Pong"  }));
 
 app.MapReverseProxy();
 
